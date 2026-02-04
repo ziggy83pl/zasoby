@@ -184,11 +184,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (!currentUrl.includes(pathSegment)) {
             html += `
-                <a href="${project.url}" target="_blank" class="logo-tooltip" data-tooltip="${project.title}">
                 <div class="logo-tooltip" data-tooltip="${project.title}" style="cursor: pointer;" onclick="openPortfolioModal('${project.name}')">
                     <img src="${project.img}" alt="${project.name}" style="--hover-color: ${project.color}" width="70" height="70" loading="lazy" onerror="this.style.display='none'">
                     <span class="logo-label">${project.name}</span>
-                </a>`;
                 </div>`;
         }
     });
