@@ -1,7 +1,7 @@
 
 
 # Dodaj do strony :
-## <div id="global-trusted-logos"></div>
+#  id="global-trusted-logos"
 i 
 ### <script src="https://ziggy83pl.github.io/zasoby/portfolio-logos.js" defer></script>
 
