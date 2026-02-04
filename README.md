@@ -1,6 +1,6 @@
 
 
 Dodaj do strony :
-<div id="global-trusted-logos"></div>
+// <div id="global-trusted-logos"></div>
 i 
 <script src="https://ziggy83pl.github.io/zasoby/portfolio-logos.js" defer></script>
