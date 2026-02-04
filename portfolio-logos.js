@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
             align-items: center;
             gap: 30px;
         }
-        #global-trusted-logos a {
+        #global-trusted-logos .logo-tooltip {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -60,14 +60,24 @@ document.addEventListener("DOMContentLoaded", function() {
             position: absolute;
             bottom: 100%; left: 50%;
             transform: translateX(-50%) translateY(10px);
-            background: #333; color: #fff;
+            background: var(--accent, #333); color: #fff;
             padding: 8px 12px; border-radius: 6px;
             font-size: 0.85rem; white-space: nowrap;
             opacity: 0; visibility: hidden; pointer-events: none;
-            transition: 0.3s; z-index: 1000; margin-bottom: 12px;
+            transition: 0.3s; z-index: 9999; margin-bottom: 12px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-        .logo-tooltip:hover::after { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .logo-tooltip::before {
+            content: '';
+            position: absolute;
+            bottom: 100%; left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            border: 6px solid transparent;
+            border-top-color: var(--accent, #333);
+            opacity: 0; visibility: hidden; pointer-events: none;
+            transition: 0.3s; z-index: 9999; margin-bottom: 0px;
+        }
+        .logo-tooltip:hover::after, .logo-tooltip:hover::before { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 
         /* --- STYLE MODALA (Okienka) --- */
         .pm-modal-overlay {
