@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         {
             name: "Strony WWW",
-            url: "https://ziggy83pl.github.io/coder/",
+            url: "https://ziggy83pl.github.io/Enterprise/",
             img: "https://ziggy83pl.github.io/zasoby/logo/enterprise.webp", 
             title: "Enterprise - Strony WWW",
             color: "#10b981"
@@ -144,5 +144,6 @@ document.addEventListener("DOMContentLoaded", function() {
     container.innerHTML = html;
 
 });
+
 
 
