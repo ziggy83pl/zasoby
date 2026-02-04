@@ -170,13 +170,13 @@ document.addEventListener("DOMContentLoaded", function() {
             description: "Profesjonalna wypożyczalnia sprzętu budowlanego i ogrodniczego. Sprawdź naszą ofertę.",
             color: "#1a2a6c"
         },
-        // {
-        //     name: "Nowy Projekt ",
-        //     url: "https://twoja-strona.pl",
-        //     img: "https://ziggy83pl.github.io/zasoby/logo/krzysztof.webp",
-        //     title: "Opis w dymku",
-        //     color: "#000000"
-        // },
+         {
+            name: "Nowy Projekt ",
+             url: "https://twoja-strona.pl",
+             img: "https://ziggy83pl.github.io/zasoby/logo/krzysztof.webp",
+            title: "Opis w dymku",
+            color: "#000000"
+        },
     ];
 
     const currentUrl = window.location.href;
@@ -245,6 +245,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.target === this) window.closePortfolioModal();
     });
 });
+
 
 
 
