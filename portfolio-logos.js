@@ -171,11 +171,12 @@ document.addEventListener("DOMContentLoaded", function() {
             color: "#1a2a6c"
         },
          {
-            name: "Nowy Projekt ",
-             url: "https://twoja-strona.pl",
-             img: "https://ziggy83pl.github.io/zasoby/logo/krzysztof.webp",
-            title: "Opis w dymku",
-            color: "#000000"
+              name: "Krzysztof",
+            url: "https://ziggy83pl.github.io/KrzysztofSzczesny/index.html",
+            img: "https://ziggy83pl.github.io/zasoby/logo/krzysztof.webp",
+            title: "Krzysztof Szczęsny - Usługi",
+            description: "Remonty, ogrody, transport. Solidnie, na czas i bez ściemy.",
+            color: "#10b981"
         },
     ];
 
@@ -245,6 +246,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.target === this) window.closePortfolioModal();
     });
 });
+
 
 
 
