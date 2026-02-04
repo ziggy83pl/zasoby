@@ -113,9 +113,9 @@ document.addEventListener("DOMContentLoaded", function() {
             color: "#1a2a6c"
         },
         // {
-        //     name: "Nowy Projekt",
+        //     name: "Arkop",
         //     url: "https://twoja-strona.pl",
-        //     img: "https://sciezka/do/logo.png",
+        //     img: "https://ziggy83pl.github.io/zasoby/logo/arkop.webp",
         //     title: "Opis w dymku",
         //     color: "#000000"
         // },
@@ -144,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
     container.innerHTML = html;
 
 });
+
 
 
 
