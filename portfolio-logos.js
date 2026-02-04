@@ -1,3 +1,5 @@
+
+https://ziggy83pl.github.io/zasoby/
 //To jest kryp do obsługi logo pro V 1.0
 
 
@@ -142,3 +144,4 @@ document.addEventListener("DOMContentLoaded", function() {
     container.innerHTML = html;
 
 });
+
