@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
          {
               name: "Ogrodnik",
-            url: "https://ziggy83pl.github.io/KrzysztofSzczesny/index.html",
+            url: "https://ziggy83pl.github.io/KrzysztofSzczesny/",
             img: "https://ziggy83pl.github.io/zasoby/logo/krzysztof.webp",
             title: "Krzysztof Szczęsny - Usługi",
             description: "Remonty, ogrody, transport. Solidnie, na czas i bez ściemy.",
@@ -246,6 +246,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.target === this) window.closePortfolioModal();
     });
 });
+
 
 
 
