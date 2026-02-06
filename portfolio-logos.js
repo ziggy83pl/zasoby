@@ -182,9 +182,9 @@ document.addEventListener("DOMContentLoaded", function() {
               name: "Nowy projekt",
             url: "hhttps://ziggy83pl.github.io/ArkadiuszMalinowski/",
             img: "https://ziggy83pl.github.io/zasoby/logo/arkop.webp",
-            title: "Krzysztof Szczęsny - Usługi",
-            description: "Remonty, ogrody, transport. Solidnie, na czas i bez ściemy.",
-            color: "#10b981"
+            title: "Arkadiusz Malinowski - Uslugi Koparkarkowe",
+            description: "Usługi Koparkowe i Roboty Ziemne — Precyzja, Moc, Terminowość.",
+            color: "#f59e0b"
         },
     ];
 
@@ -254,6 +254,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.target === this) window.closePortfolioModal();
     });
 });
+
 
 
 
