@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function() {
             color: "#1a2a6c"
         },
          {
-              name: "Remonty",
+              name: "Ogrodnik",
             url: "https://ziggy83pl.github.io/KrzysztofSzczesny/index.html",
             img: "https://ziggy83pl.github.io/zasoby/logo/krzysztof.webp",
             title: "Krzysztof Szczęsny - Usługi",
@@ -246,6 +246,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.target === this) window.closePortfolioModal();
     });
 });
+
 
 
 
