@@ -178,6 +178,14 @@ document.addEventListener("DOMContentLoaded", function() {
             description: "Remonty, ogrody, transport. Solidnie, na czas i bez ściemy.",
             color: "#10b981"
         },
+         {
+              name: "Nowy projekt",
+            url: "hhttps://ziggy83pl.github.io/ArkadiuszMalinowski/",
+            img: "https://ziggy83pl.github.io/zasoby/logo/arkop.webp",
+            title: "Krzysztof Szczęsny - Usługi",
+            description: "Remonty, ogrody, transport. Solidnie, na czas i bez ściemy.",
+            color: "#10b981"
+        },
     ];
 
     const currentUrl = window.location.href;
@@ -246,6 +254,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.target === this) window.closePortfolioModal();
     });
 });
+
 
 
 
