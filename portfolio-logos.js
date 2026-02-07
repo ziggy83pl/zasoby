@@ -171,20 +171,21 @@ document.addEventListener("DOMContentLoaded", function() {
             color: "#1a2a6c"
         },
          {
-              name: "Ogrodnik",
+            name: "Ogrodnik",
             url: "https://ziggy83pl.github.io/KrzysztofSzczesny/",
             img: "https://ziggy83pl.github.io/zasoby/logo/krzysztof.webp",
             title: "Krzysztof Szczęsny - Usługi",
             description: "Remonty, ogrody, transport. Solidnie, na czas i bez ściemy.",
             color: "#10b981"
         },
-         {
-              name: "Koparka",
+        {
+            name: "Koparka",
             url: "https://uslugi-koparko.pages.dev/",
             img: "https://ziggy83pl.github.io/zasoby/logo/arkop.webp",
             title: "Arkadiusz Malinowski - Uslugi Koparkarkowe",
             description: "Usługi Koparkowe i Roboty Ziemne — Precyzja, Moc, Terminowość.",
-            color: "#f59e0b"
+            color: "#f59e0b",
+            keywords: ["uslugi-koparko", "ArkadiuszMalinowski"]
         },
     ];
 
@@ -194,14 +195,19 @@ document.addEventListener("DOMContentLoaded", function() {
     let html = `<h2 class="logo-header" data-lang="portfolio_title">Wspieramy i Polecamy</h2>`;
 
     projects.forEach(project => {
-        // SPRAWDZANIE: Jeśli aktualny adres zawiera URL projektu, pomiń go
-        // Pobieramy część URL po domenie (np. 'Prodom-budownictwo')
-        let pathSegment = project.url.replace('https://', '').replace('http://', '').split('/')[1];
-        
-        // Zabezpieczenie dla domen głównych (np. siepomaga.pl) lub specyficznych przypadków
-        if (!pathSegment) pathSegment = project.name;
+        let isHidden = false;
 
-        if (!currentUrl.includes(pathSegment)) {
+        // 1. Sprawdzenie po słowach kluczowych (jeśli zdefiniowane) - obsługuje wiele URLi
+        if (project.keywords && Array.isArray(project.keywords)) {
+            if (project.keywords.some(key => currentUrl.includes(key))) isHidden = true;
+        } else {
+            // 2. Stara logika (automatyczna)
+            let pathSegment = project.url.replace('https://', '').replace('http://', '').split('/')[1];
+            if (!pathSegment) pathSegment = project.name;
+            if (currentUrl.includes(pathSegment)) isHidden = true;
+        }
+
+        if (!isHidden) {
             html += `
                 <div class="logo-tooltip" data-tooltip="${project.title}" style="cursor: pointer;" onclick="openPortfolioModal('${project.name}')">
                     <img src="${project.img}" alt="${project.name}" style="--hover-color: ${project.color}" width="70" height="70" loading="lazy" onerror="this.style.display='none'">
@@ -254,14 +260,3 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.target === this) window.closePortfolioModal();
     });
 });
-
-
-
-
-
-
-
-
-
-
-
