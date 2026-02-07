@@ -179,8 +179,8 @@ document.addEventListener("DOMContentLoaded", function() {
             color: "#10b981"
         },
          {
-              name: "Nowy projekt",
-            url: "hhttps://ziggy83pl.github.io/ArkadiuszMalinowski/",
+              name: "Koparka",
+            url: "https://uslugi-koparko.pages.dev/",
             img: "https://ziggy83pl.github.io/zasoby/logo/arkop.webp",
             title: "Arkadiusz Malinowski - Uslugi Koparkarkowe",
             description: "Usługi Koparkowe i Roboty Ziemne — Precyzja, Moc, Terminowość.",
@@ -254,6 +254,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.target === this) window.closePortfolioModal();
     });
 });
+
 
 
 
