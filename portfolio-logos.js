@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         {
             name: "Wizytówki online",
-            url: "https://ziggy83pl.github.io/Enterprise/index.html",
+            url: "https://wizytowka-online.pages.dev/",
             img: "https://ziggy83pl.github.io/zasoby/logo/enterprise.webp", 
             title: "Enterprise - Strony WWW",
             description: "Nowoczesne strony internetowe, sklepy online i aplikacje webowe. Zadbaj o swój wizerunek w sieci.",
@@ -260,3 +260,4 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.target === this) window.closePortfolioModal();
     });
 });
+
