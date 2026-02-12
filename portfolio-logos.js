@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         {
             name: "Budownictwo",
-            url: "https://ziggy83pl.github.io/Prodom-budownictwo/",
+            url: "https://zamow-budowe.pages.dev/",
             img: "https://ziggy83pl.github.io/zasoby/logo/prodom.webp",
             title: "PRODOM BUDOWNICTWO",
             description: "Kompleksowe usługi budowlane. Od fundamentów aż po dach. Solidność i terminowość.",
@@ -260,4 +260,5 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.target === this) window.closePortfolioModal();
     });
 });
+
 
