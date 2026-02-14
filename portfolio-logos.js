@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         {
             name: "Remonty",
-            url: "https://ziggy83pl.github.io/PawelSzczesny/index.html",
+            url: "https://pawelszczesnyostroleka.pages.dev/",
             img: "https://ziggy83pl.github.io/zasoby/logo/pawel.webp",
             title: "CZŁOWIEK, KTÓRY WYKONA WSZYSTKO",
             description: "Usługi remontowo-ogrodowe i transport. Solidnie, terminowo i dokładnie.",
@@ -260,5 +260,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.target === this) window.closePortfolioModal();
     });
 });
+
 
 
