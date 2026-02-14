@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
             text-decoration: none;
             color: inherit;
             position: relative;
+            cursor: pointer;
         }
         #global-trusted-logos img {
             height: 70px;
@@ -31,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
             opacity: 0.9;
             transition: all 0.3s ease;
         }
-        #global-trusted-logos img:hover {
+        #global-trusted-logos .logo-tooltip:hover img {
             filter: grayscale(0%);
             opacity: 1;
             transform: scale(1.1);
@@ -120,7 +121,6 @@ document.addEventListener("DOMContentLoaded", function() {
     document.head.appendChild(style);
 
     // LISTA TWOICH PROJEKTÓW
-    // Obrazki są pobierane z repozytorium RentMaster (główne źródło plików)
     const projects = [
         {
             name: "Kebab Łomża",
@@ -137,6 +137,14 @@ document.addEventListener("DOMContentLoaded", function() {
             title: "PRODOM BUDOWNICTWO",
             description: "Kompleksowe usługi budowlane. Od fundamentów aż po dach. Solidność i terminowość.",
             color: "#3498db"
+        },
+        {
+            name: "Słoneczny Bojler",
+            url: "https://slonecznyboiler.pages.dev/",
+            img: "https://slonecznyboiler.pages.dev/logo/slonce.webp",
+            title: "Słoneczny Bojler - Darmowa Woda",
+            description: "Fotowoltaika do grzania wody. Oszczędzaj na rachunkach dzięki energii słonecznej. Montaż Łomża i okolice.",
+            color: "#F59E0B"
         },
         {
             name: "Pomoc",
@@ -202,14 +210,17 @@ document.addEventListener("DOMContentLoaded", function() {
             if (project.keywords.some(key => currentUrl.includes(key))) isHidden = true;
         } else {
             // 2. Stara logika (automatyczna)
-            let pathSegment = project.url.replace('https://', '').replace('http://', '').split('/')[1];
-            if (!pathSegment) pathSegment = project.name;
-            if (currentUrl.includes(pathSegment)) isHidden = true;
+            // Sprawdza czy URL projektu zawiera się w obecnym URLu (proste wykrywanie "siebie samego")
+            if (currentUrl.includes(project.url.replace('https://', '').replace('http://', '').split('/')[0])) {
+                 isHidden = true;
+            }
+             // Dodatkowe sprawdzenie dla Słonecznego Bojlera
+            if (project.name === "Słoneczny Bojler" && currentUrl.includes("slonecznyboiler")) isHidden = true;
         }
 
         if (!isHidden) {
             html += `
-                <div class="logo-tooltip" data-tooltip="${project.title}" style="cursor: pointer;" onclick="openPortfolioModal('${project.name}')">
+                <div class="logo-tooltip" data-tooltip="${project.title}" onclick="openPortfolioModal('${project.name}')">
                     <img src="${project.img}" alt="${project.name}" style="--hover-color: ${project.color}" width="70" height="70" loading="lazy" onerror="this.style.display='none'">
                     <span class="logo-label">${project.name}</span>
                 </div>`;
@@ -220,46 +231,51 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // --- LOGIKA MODALA ---
     
-    // 1. Dodanie struktury HTML modala do body
-    const modalHtml = `
-        <div id="portfolio-modal-overlay" class="pm-modal-overlay">
-            <div class="pm-modal-content">
-                <button class="pm-close-btn" onclick="closePortfolioModal()">&times;</button>
-                <img id="pm-img" class="pm-modal-img" src="" alt="">
-                <h3 id="pm-title" class="pm-modal-title"></h3>
-                <p id="pm-desc" class="pm-modal-desc"></p>
-                <a id="pm-link" href="#" target="_blank" class="pm-modal-action" style="background-color: var(--accent, #333)">Odwiedź stronę</a>
+    // 1. Dodanie struktury HTML modala do body (jeśli jeszcze nie istnieje)
+    if (!document.getElementById('portfolio-modal-overlay')) {
+        const modalHtml = `
+            <div id="portfolio-modal-overlay" class="pm-modal-overlay">
+                <div class="pm-modal-content">
+                    <button class="pm-close-btn" onclick="closePortfolioModal()">&times;</button>
+                    <img id="pm-img" class="pm-modal-img" src="" alt="">
+                    <h3 id="pm-title" class="pm-modal-title"></h3>
+                    <p id="pm-desc" class="pm-modal-desc"></p>
+                    <a id="pm-link" href="#" target="_blank" class="pm-modal-action" style="background-color: var(--accent, #333)">Odwiedź stronę</a>
+                </div>
             </div>
-        </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', modalHtml);
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    }
 
     // 2. Funkcje globalne do obsługi (przypisane do window, aby działały w onclick)
     window.openPortfolioModal = function(projectName) {
         const project = projects.find(p => p.name === projectName);
         if (!project) return;
 
-        document.getElementById('pm-img').src = project.img;
+        const imgEl = document.getElementById('pm-img');
+        imgEl.src = project.img;
+        imgEl.alt = project.name;
+        
         document.getElementById('pm-title').textContent = project.title;
-        // Używamy opisu (description) jeśli jest, w przeciwnym razie tytułu
         document.getElementById('pm-desc').textContent = project.description || project.title;
         
         const linkBtn = document.getElementById('pm-link');
         linkBtn.href = project.url;
-        linkBtn.style.backgroundColor = project.color; // Przycisk w kolorze marki
+        linkBtn.style.backgroundColor = project.color;
 
         document.getElementById('portfolio-modal-overlay').classList.add('active');
     };
 
     window.closePortfolioModal = function() {
-        document.getElementById('portfolio-modal-overlay').classList.remove('active');
+        const overlay = document.getElementById('portfolio-modal-overlay');
+        if (overlay) overlay.classList.remove('active');
     };
 
     // Zamknij modal po kliknięciu w tło
-    document.getElementById('portfolio-modal-overlay').addEventListener('click', function(e) {
-        if (e.target === this) window.closePortfolioModal();
-    });
+    const overlay = document.getElementById('portfolio-modal-overlay');
+    if (overlay) {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === this) window.closePortfolioModal();
+        });
+    }
 });
-
-
-
