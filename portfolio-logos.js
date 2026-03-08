@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         {
             name: "Wynajem",
-            url: "https://ziggy83pl.github.io/rentmaster/",
+            url: "https://rentmaster.pages.dev/",
             img: "https://ziggy83pl.github.io/zasoby/logo/rentmaster.webp",
             title: "RentMaster - Wynajem",
             description: "Profesjonalna wypożyczalnia sprzętu budowlanego i ogrodniczego. Sprawdź naszą ofertę.",
@@ -279,3 +279,4 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
