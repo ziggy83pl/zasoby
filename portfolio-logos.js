@@ -195,6 +195,14 @@ document.addEventListener("DOMContentLoaded", function() {
             color: "#f59e0b",
             keywords: ["uslugi-koparko", "ArkadiuszMalinowski"]
         },
+        {
+            name: "Giełda Budowlana",
+            url: "https://gieldabudowlana.xo.je/",
+            img: "https://ziggy83pl.github.io/zasoby/logo/gieldabudowlana.webp",
+            title: "Giełda Budowlana",
+            description: "Giełda Budowlana",
+            color: "#f39c12"
+        },
     ];
 
     const currentUrl = window.location.href;
