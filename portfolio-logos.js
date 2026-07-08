@@ -7,10 +7,40 @@ document.addEventListener("DOMContentLoaded", function() {
     style.textContent = `
         #global-trusted-logos {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            gap: 30px;
+            width: 100%;
+            gap: 15px;
+        }
+        .logos-marquee {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+            mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+        }
+        .logos-track {
+            display: flex;
+            width: max-content;
+            gap: 0;
+            animation: scrollMarquee 25s linear infinite;
+        }
+        .logos-track:hover {
+            animation-play-state: paused;
+        }
+        .logos-track .logo-tooltip {
+            margin: 0 15px;
+        }
+        @keyframes scrollMarquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
         #global-trusted-logos .logo-tooltip {
             display: flex;
@@ -203,12 +233,21 @@ document.addEventListener("DOMContentLoaded", function() {
             description: "Giełda Budowlana",
             color: "#f39c12"
         },
+        {
+            name: "LZ-TECH",
+            url: "https://lz-tech.pages.dev/",
+            img: "https://ziggy83pl.github.io/zasoby/logo/lz_tech.webp",
+            title: "LZ-TECH - Usługi Minikoparką i Elektryczne",
+            description: "Profesjonalne usługi minikoparką i instalacje elektryczne. Wykopy pod przyłącza, kanalizację, kable, niwelacja terenu i kompleksowa elektryka.",
+            color: "#ffcc00",
+            keywords: ["lz-tech", "lukaszZelechowski", "lukaszzelechowski", "lz.tech"]
+        },
     ];
 
     const currentUrl = window.location.href;
 
     // Nagłówek sekcji (H2) dodawany automatycznie
-    let html = `<h2 class="logo-header" data-lang="portfolio_title">Wspieramy i Polecamy</h2>`;
+    let logosHtml = '';
 
     projects.forEach(project => {
         let isHidden = false;
@@ -227,13 +266,23 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if (!isHidden) {
-            html += `
+            logosHtml += `
                 <div class="logo-tooltip" data-tooltip="${project.title}" onclick="openPortfolioModal('${project.name}')">
                     <img src="${project.img}" alt="${project.name}" style="--hover-color: ${project.color}" width="70" height="70" loading="lazy" onerror="this.style.display='none'">
                     <span class="logo-label">${project.name}</span>
                 </div>`;
         }
     });
+
+    let html = `<h2 class="logo-header" data-lang="portfolio_title">Wspieramy i Polecamy</h2>`;
+    html += `
+        <div class="logos-marquee">
+            <div class="logos-track">
+                ${logosHtml}
+                ${logosHtml}
+            </div>
+        </div>
+    `;
 
     container.innerHTML = html;
 
