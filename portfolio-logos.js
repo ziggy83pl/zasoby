@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", function() {
             overflow: hidden;
             width: 100%;
             position: relative;
-            padding: 15px 0;
+            padding: 40px 0 15px 0;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
         }
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         .logos-track .logo-tooltip {
             margin: 0 15px;
+            flex-shrink: 0;
         }
         @keyframes scrollMarquee {
             0% {
@@ -50,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
             color: inherit;
             position: relative;
             cursor: pointer;
+            flex-shrink: 0;
         }
         #global-trusted-logos img {
             height: 70px;
@@ -267,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (!isHidden) {
             logosHtml += `
-                <div class="logo-tooltip" data-tooltip="${project.title}" onclick="openPortfolioModal('${project.name}')">
+                <div class="logo-tooltip" data-tooltip="${project.title}" title="${project.title}" onclick="openPortfolioModal('${project.name}')">
                     <img src="${project.img}" alt="${project.name}" style="--hover-color: ${project.color}; width: 70px; height: 70px; object-fit: contain; border-radius: 50%;" width="70" height="70" loading="lazy" onerror="this.style.display='none'">
                     <span class="logo-label">${project.name}</span>
                 </div>`;
