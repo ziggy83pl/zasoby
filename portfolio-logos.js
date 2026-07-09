@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!isHidden) {
             logosHtml += `
                 <div class="logo-tooltip" data-tooltip="${project.title}" onclick="openPortfolioModal('${project.name}')">
-                    <img src="${project.img}" alt="${project.name}" style="--hover-color: ${project.color}" width="70" height="70" loading="lazy" onerror="this.style.display='none'">
+                    <img src="${project.img}" alt="${project.name}" style="--hover-color: ${project.color}; width: 70px; height: 70px; object-fit: contain; border-radius: 50%;" width="70" height="70" loading="lazy" onerror="this.style.display='none'">
                     <span class="logo-label">${project.name}</span>
                 </div>`;
         }
