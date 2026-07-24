@@ -160,6 +160,49 @@ document.addEventListener("DOMContentLoaded", function() {
             border-radius: 50px; font-weight: 600; transition: 0.3s;
         }
         .pm-modal-action:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        /* --- DARK MODE SUPPORT FOR MODAL --- */
+        html[data-bs-theme="dark"] .pm-modal-content,
+        body.dark-mode .pm-modal-content,
+        .dark-mode .pm-modal-content,
+        [data-theme="dark"] .pm-modal-content {
+            background-color: #1e293b !important;
+            background: #1e293b !important;
+            color: #f8fafc !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+        }
+        html[data-bs-theme="dark"] .pm-modal-title,
+        body.dark-mode .pm-modal-title,
+        .dark-mode .pm-modal-title,
+        [data-theme="dark"] .pm-modal-title {
+            color: #f8fafc !important;
+        }
+        html[data-bs-theme="dark"] .pm-modal-desc,
+        body.dark-mode .pm-modal-desc,
+        .dark-mode .pm-modal-desc,
+        [data-theme="dark"] .pm-modal-desc {
+            color: #cbd5e1 !important;
+        }
+        html[data-bs-theme="dark"] .pm-close-btn,
+        body.dark-mode .pm-close-btn,
+        .dark-mode .pm-close-btn,
+        [data-theme="dark"] .pm-close-btn {
+            color: #cbd5e1 !important;
+        }
+        html[data-bs-theme="dark"] .pm-close-btn:hover,
+        body.dark-mode .pm-close-btn:hover,
+        .dark-mode .pm-close-btn:hover,
+        [data-theme="dark"] .pm-close-btn:hover {
+            color: #f97316 !important;
+        }
+        html[data-bs-theme="dark"] .pm-modal-img,
+        body.dark-mode .pm-modal-img,
+        .dark-mode .pm-modal-img,
+        [data-theme="dark"] .pm-modal-img {
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+        }
     `;
     document.head.appendChild(style);
 
