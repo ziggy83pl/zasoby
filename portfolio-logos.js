@@ -244,6 +244,15 @@ document.addEventListener("DOMContentLoaded", function() {
             color: "#ffcc00",
             keywords: ["lz-tech", "lukaszZelechowski", "lukaszzelechowski", "lz.tech"]
         },
+        {
+            name: "Antyki",
+            url: "https://antyki-pl.xo.je/",
+            img: "https://ziggy83pl.github.io/zasoby/logo/antyki.webp",
+            title: "Antyki PL - Ogłoszenia i Skup Antyków",
+            description: "Portal z antykami, starociami i meblami z duszą. Dodawaj ogłoszenia i kupuj unikalne przedmioty z historią.",
+            color: "#8b4513",
+            keywords: ["antyki-pl", "antyki.pl", "antyki-pl.xo.je", "antyki"]
+        },
     ];
 
     const currentUrl = window.location.href;
@@ -265,6 +274,9 @@ document.addEventListener("DOMContentLoaded", function() {
             }
              // Dodatkowe sprawdzenie dla Słonecznego Bojlera
             if (project.name === "Słoneczny Bojler" && currentUrl.includes("slonecznyboiler")) isHidden = true;
+        }
+        if ((project.name === "Antyki" || project.name === "Antyki PL") && (currentUrl.includes("antyki-pl") || currentUrl.includes("antyki.pl") || currentUrl.includes("antyki"))) {
+            isHidden = true;
         }
 
         if (!isHidden) {
