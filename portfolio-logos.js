@@ -139,7 +139,18 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         .pm-close-btn:hover { color: #333; }
 
-        .pm-modal-img { height: 100px; width: 100px; object-fit: contain; margin-bottom: 15px; }
+        .pm-modal-img {
+            height: 90px;
+            width: 90px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 0, 0, 0.12);
+            background-color: #ffffff;
+            padding: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin: 0 auto 15px auto;
+            display: block;
+        }
         .pm-modal-title { font-size: 1.5rem; margin-bottom: 10px; color: #333; font-weight: bold; }
         .pm-modal-desc { font-size: 0.95rem; color: #666; margin-bottom: 25px; line-height: 1.5; }
         
