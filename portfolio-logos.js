@@ -307,6 +307,15 @@ document.addEventListener("DOMContentLoaded", function() {
             color: "#8b4513",
             keywords: ["antyki-pl", "antyki.pl", "antyki-pl.xo.je", "antyki"]
         },
+        {
+            name: "Wykończenia",
+            url: "https://mariusz-butrymowicz-wykonczenia-wnetrz.pages.dev/",
+            img: "https://ziggy83pl.github.io/zasoby/logo/mariusz.webp",
+            title: "Mariusz Butrymowicz - Wykończenia Wnętrz",
+            description: "Kompleksowe usługi remontowo-budowlane i wykończenia wnętrz od A do Z. Malowanie, szpachlowanie, zabudowy g-k, glazura i instalacje.",
+            color: "#eab308",
+            keywords: ["mariusz-butrymowicz", "mariusz-butrymowicz-wykonczenia-wnetrz", "butrymowicz"]
+        },
     ];
 
     const currentUrl = window.location.href;
