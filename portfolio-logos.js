@@ -15,18 +15,20 @@ document.addEventListener("DOMContentLoaded", function() {
         .logos-marquee {
             overflow: hidden;
             width: 100%;
+            max-width: 1080px;
+            margin: 0 auto;
             position: relative;
-            padding: 40px 0 15px 0;
+            padding: 30px 0 15px 0;
             display: flex;
             align-items: flex-end;
-            mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
         }
         .logos-track {
             display: flex;
             width: max-content;
             gap: 0;
-            animation: scrollMarquee 25s linear infinite;
+            animation: scrollMarquee 35s linear infinite;
         }
         .logos-track:hover {
             animation-play-state: paused;
@@ -355,6 +357,8 @@ document.addEventListener("DOMContentLoaded", function() {
     html += `
         <div class="logos-marquee">
             <div class="logos-track">
+                ${logosHtml}
+                ${logosHtml}
                 ${logosHtml}
                 ${logosHtml}
             </div>
