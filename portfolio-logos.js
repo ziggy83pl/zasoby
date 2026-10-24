@@ -327,12 +327,12 @@ document.addEventListener("DOMContentLoaded", function() {
             keywords: ["uslugi-koparko", "ArkadiuszMalinowski"]
         },
         {
-            name: "Giełda Budowlana",
-            url: "https://gieldabudowlana.xo.je/",
-            img: "https://ziggy83pl.github.io/zasoby/logo/gieldabudowlana.webp",
-            title: "Giełda Budowlana",
-            description: "Giełda Budowlana",
-            color: "#f39c12"
+            name: "Majster Giełda",
+            url: "https://majstergielda.pl/",
+            img: "https://ziggy83pl.github.io/zasoby/logo/majstergielda.webp",
+            title: "Majster Giełda",
+            description: "Majster Giełda — ogłoszenia budowlane, zlecenia i wykonawcy",
+            color: "#facc15"
         },
         {
             name: "LZ-TECH",
