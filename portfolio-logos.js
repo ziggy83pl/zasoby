@@ -426,7 +426,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let dragStartX = 0;
     let dragStartCurrentX = 0;
     let hasMoved = false;
-    let lastTime = performance.now();
     const autoSpeed = 35; // px na sekundę
 
     function getHalfWidth() {
@@ -439,15 +438,36 @@ document.addEventListener("DOMContentLoaded", function() {
         while (currentX > 0) { currentX -= halfWidth; }
     }
 
-    function renderLoop(now) {
-        const delta = Math.min((now - lastTime) / 1000, 0.1);
-        lastTime = now;
+    // Autoprzewijanie: animacja transform liczona przez przeglądarkę (płynna także na telefonie),
+    // skrypt tylko ją włącza i wyłącza.
+    let autoAnim = null;
+    let autoHalf = 0;
 
-        if (!isHovered && !isDragging) {
-            currentX -= autoSpeed * delta;
-            wrapX();
-            if (trackEl) trackEl.style.transform = `translate3d(${currentX}px, 0, 0)`;
-        }
+    function startAuto() {
+        if (!trackEl || !trackEl.animate) return;
+        wrapX();
+        autoHalf = getHalfWidth();
+        autoAnim = trackEl.animate(
+            [{ transform: 'translate3d(0,0,0)' }, { transform: `translate3d(${-autoHalf}px,0,0)` }],
+            { duration: autoHalf / autoSpeed * 1000, iterations: Infinity, easing: 'linear' }
+        );
+        autoAnim.currentTime = -currentX / autoSpeed * 1000;
+    }
+
+    // Zatrzymanie: pozycja z animacji wraca do currentX, więc przeciąganie i strzałki ruszają z tego miejsca.
+    function stopAuto() {
+        if (!autoAnim) return;
+        const t = Number(autoAnim.currentTime) || 0;
+        autoAnim.cancel();
+        autoAnim = null;
+        currentX = -((t * autoSpeed / 1000) % autoHalf);
+        trackEl.style.transform = `translate3d(${currentX}px, 0, 0)`;
+    }
+
+    function renderLoop() {
+        const want = !isHovered && !isDragging;
+        if (autoAnim && (!want || getHalfWidth() !== autoHalf)) stopAuto(); // np. doczytały się loga
+        else if (want && !autoAnim) startAuto();
         requestAnimationFrame(renderLoop);
     }
     requestAnimationFrame(renderLoop);
@@ -461,6 +481,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Przeciąganie myszką (Mouse Drag)
         marqueeEl.addEventListener('mousedown', (e) => {
+            stopAuto();
             isDragging = true;
             hasMoved = false;
             dragStartX = e.clientX;
@@ -489,6 +510,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Przeciąganie dotykiem na telefonach (Touch Swipe)
         marqueeEl.addEventListener('touchstart', (e) => {
+            stopAuto();
             isHovered = true;
             isDragging = true;
             hasMoved = false;
@@ -518,6 +540,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Kółko myszy (przewijanie kółkiem nad paskiem logotypów)
         marqueeEl.addEventListener('wheel', (e) => {
             e.preventDefault();
+            stopAuto();
             const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
             currentX -= delta * 0.9;
             wrapX();
@@ -528,6 +551,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Przyciski ‹ i ›
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
+            stopAuto();
             currentX += 220; // przesuwa w prawo, odsłaniając wcześniejsze loga
             wrapX();
             if (trackEl) trackEl.style.transform = `translate3d(${currentX}px, 0, 0)`;
@@ -535,6 +559,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
+            stopAuto();
             currentX -= 220; // przesuwa w lewo, odsłaniając kolejne loga
             wrapX();
             if (trackEl) trackEl.style.transform = `translate3d(${currentX}px, 0, 0)`;
