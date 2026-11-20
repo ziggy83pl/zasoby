@@ -1,6 +1,17 @@
+// Pasek budujemy dopiero, gdy jest blisko ekranu (zwykle w stopce) — nie spowalnia wczytywania strony.
 document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('global-trusted-logos');
     if (!container) return;
+    if (!('IntersectionObserver' in window)) { initPortfolioLogos(container); return; }
+    const io = new IntersectionObserver((entries) => {
+        if (!entries.some(e => e.isIntersecting)) return;
+        io.disconnect();
+        initPortfolioLogos(container);
+    }, { rootMargin: '400px 0px' });
+    io.observe(container);
+});
+
+function initPortfolioLogos(container) {
 
     // 1. WSTRZYKIWANIE STYLI CSS (Aby skrypt był samodzielny na każdej stronie)
     const style = document.createElement('style');
@@ -428,8 +439,13 @@ document.addEventListener("DOMContentLoaded", function() {
     let hasMoved = false;
     const autoSpeed = 35; // px na sekundę
 
+    // Szerokość mierzona tylko przy zmianie rozmiaru (np. doczytane loga), a nie w każdej klatce —
+    // pomiar w każdej klatce zmuszał przeglądarkę do ciągłego przeliczania układu strony.
+    let halfWidth = 0;
+    function measure() { halfWidth = (trackEl ? trackEl.scrollWidth / 2 : 1200) || 1200; }
     function getHalfWidth() {
-        return (trackEl ? trackEl.scrollWidth / 2 : 1200) || 1200;
+        if (!halfWidth) measure();
+        return halfWidth;
     }
 
     function wrapX() {
@@ -464,13 +480,32 @@ document.addEventListener("DOMContentLoaded", function() {
         trackEl.style.transform = `translate3d(${currentX}px, 0, 0)`;
     }
 
+    // Pętla działa tylko, gdy pasek jest na ekranie i karta jest widoczna.
+    let visible = true;
+    let looping = false;
     function renderLoop() {
+        if (!visible || document.hidden) {
+            stopAuto();
+            looping = false;
+            return;
+        }
         const want = !isHovered && !isDragging;
         if (autoAnim && (!want || getHalfWidth() !== autoHalf)) stopAuto(); // np. doczytały się loga
         else if (want && !autoAnim) startAuto();
         requestAnimationFrame(renderLoop);
     }
-    requestAnimationFrame(renderLoop);
+    function wake() {
+        if (looping || !visible || document.hidden) return;
+        looping = true;
+        requestAnimationFrame(renderLoop);
+    }
+    if (trackEl && 'ResizeObserver' in window) new ResizeObserver(measure).observe(trackEl);
+    else window.addEventListener('resize', measure);
+    if ('IntersectionObserver' in window && marqueeEl) {
+        new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; wake(); }).observe(marqueeEl);
+    }
+    document.addEventListener('visibilitychange', wake);
+    wake();
 
     // Hover zatrzymuje ruch
     if (marqueeEl) {
@@ -616,5 +651,4 @@ document.addEventListener("DOMContentLoaded", function() {
             if (e.target === this) window.closePortfolioModal();
         });
     }
-});
-
+}
